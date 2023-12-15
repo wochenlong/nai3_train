@@ -94,7 +94,7 @@ folder_path = "./output"
 num_images = 20  # 要生成的图像数量
 batch_size = 10  # 每批次生成的图像数量
 sleep_time = 20  # 每批次生成后的休眠时间（单位：秒）
-prefix = "amazing quality, absurdres, masterpiece, very aesthetic,absurdres,solo,close up,super detail,ultra detail,  {{{{{artist: atdan}}}}} ,[[[artist: qizhu]]],[[[artist:da_mao_banlangen]]],[[[artist:ningen_mame]]],[[artist:ciloranko]],[[artist:sho_(sho_lwlw)]],[[tianliang duohe fangdongye]],[[artist:rhasta]][[[artist:fukuro_daizi]]],year 2023, "
+prefix = " masterpiece, very aesthetic,year 2023, "
 
 for i in range(num_images):
     # 生成图像数据
