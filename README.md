@@ -20,6 +20,7 @@ nai3生成的图片，一键生成、打标和处理脚本
 - `num_images`：生成图片的总数量
 - `batch_size`：每批次生成的图像数量
 - `sleep_time`： 每批次生成后的休眠时间（单位：秒）
+- `retry_delay`： 脚本遇到异常中断后，重新自动启动的时间（单位：秒）
 
 运行命令：`Python random_prompt`
 
