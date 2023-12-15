@@ -46,7 +46,7 @@ class NovelaiImageGenerator:
 
         self.prompt_folder = prompt_folder
 
-    def generate_image(self):
+    def generate_image(self, prefix):
         # 生成图像的方法
         seed = random.randint(0, 9999999999)  # 生成一个随机种子
         self.json["parameters"]["seed"] = seed  # 将随机种子设置到请求参数中
@@ -59,10 +59,7 @@ class NovelaiImageGenerator:
         with open(prompt_file_path, "r") as file:
             prompt = file.read()
 
-        self.json["input"] = (
-            " masterpiece, very aesthetic "
-            + prompt
-        )  # 添加默认前缀
+        self.json["input"] = prefix + prompt  # 添加自定义前缀
         r = requests.post(self.api, json=self.json, headers=self.headers)  # 发送 POST 请求
         with zipfile.ZipFile(
             io.BytesIO(r.content), mode="r"
@@ -90,23 +87,18 @@ generator = NovelaiImageGenerator(
     negative_prompt="nsfw",
 )
 
-# 生成图像数据
-image_data = generator.generate_image()
-
-# 图像文件的保存路径
+# 生成图像文件的保存路径
 folder_path = "./output"
 
-# 保存图像文件
-save_image_from_binary(image_data, folder_path)
-
 # 生成多张图像并保存
-num_images = 50  # 要生成的图像数量
+num_images = 20  # 要生成的图像数量
 batch_size = 10  # 每批次生成的图像数量
-sleep_time = 10  # 每批次生成后的休眠时间（单位：秒）
+sleep_time = 20  # 每批次生成后的休眠时间（单位：秒）
+prefix = "amazing quality, absurdres, masterpiece, very aesthetic,absurdres,solo,close up,super detail,ultra detail,  {{{{{artist: atdan}}}}} ,[[[artist: qizhu]]],[[[artist:da_mao_banlangen]]],[[[artist:ningen_mame]]],[[artist:ciloranko]],[[artist:sho_(sho_lwlw)]],[[tianliang duohe fangdongye]],[[artist:rhasta]][[[artist:fukuro_daizi]]],year 2023, "
 
 for i in range(num_images):
     # 生成图像数据
-    image_data = generator.generate_image()
+    image_data = generator.generate_image(prefix)
 
     # 保存图像文件
     save_image_from_binary(image_data, folder_path)
