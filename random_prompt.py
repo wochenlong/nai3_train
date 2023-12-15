@@ -4,7 +4,7 @@ import zipfile
 import io
 import os
 import string
-
+import time
 
 
 class NovelaiImageGenerator:
@@ -100,7 +100,9 @@ folder_path = "./output"
 save_image_from_binary(image_data, folder_path)
 
 # 生成多张图像并保存
-num_images = 5  # 要生成的图像数量
+num_images = 50  # 要生成的图像数量
+batch_size = 10  # 每批次生成的图像数量
+sleep_time = 10  # 每批次生成后的休眠时间（单位：秒）
 
 for i in range(num_images):
     # 生成图像数据
@@ -108,3 +110,9 @@ for i in range(num_images):
 
     # 保存图像文件
     save_image_from_binary(image_data, folder_path)
+
+    if (i + 1) % batch_size == 0:
+        print(f"已生成 {i + 1} 张图像，休眠 {sleep_time} 秒...")
+        time.sleep(sleep_time)
+
+print("所有图像已生成完毕！")
