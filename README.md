@@ -17,6 +17,8 @@ nai3生成的图片，一键生成、打标和处理脚本
 - `prompt_folder`：从这个文件夹里面随机抽取TXT，作为提示词
 - `negative_prompt`：负面提示词
 - `num_images`：生成图片数量
+- `batch_size`：每批次生成的图像数量
+- `sleep_time`： 每批次生成后的休眠时间（单位：秒）
 
 运行命令：`Python random_prompt`
 
