@@ -11,12 +11,13 @@ nai3生成的图片，一键生成、打标和处理脚本
 输入下面的代码并按下回车运行
 
 console.log(JSON.parse(localStorage.session).auth_token)
+输出的字符串就是你的授权令牌
 
 -prompt_folder  从这个文件夹里面随机抽取TXT，作为提示词
 -negative_prompt 负面提示词
 -num_images  生成图片数量
    
-输出的字符串就是你的授权令牌
+
 
 
 运行：Python random_ prompt
