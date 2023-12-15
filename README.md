@@ -1,5 +1,6 @@
 # nai3_train
 nai3生成的图片，一键生成、打标和处理脚本
+
 1.批量生图，生成随机图片。
 
 Python random_ prompt
