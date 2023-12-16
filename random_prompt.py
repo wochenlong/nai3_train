@@ -100,6 +100,7 @@ sleep_time = 10  # 每批次生成后的休眠时间（单位：秒）
 retry_delay = 60  # 因为报错中断，脚本的重新启动时间（单位：秒）
 prefix = "amazing quality, absurdres, masterpiece, "
 
+
 for i in range(num_images):
     try:
         # 生成图像数据
@@ -114,4 +115,7 @@ for i in range(num_images):
     except (SSLError, RequestException) as e:
         print("发生错误:", e)
         print(f"休眠 {retry_delay} 秒后重新启动")
+    except zipfile.BadZipFile as e:
+        print("发生错误:", e)
+        print("忽略此错误，继续脚本运行")
 
