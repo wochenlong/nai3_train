@@ -6,7 +6,7 @@ nai3生成的图片，一键生成、打标和处理脚本
 
 必填参数：
 - `self.token`：生图必需的token，授权令牌。获取方式如下：
-  - 在网页中登录你的 NovelAI 账号
+  - 在网页（https://novelai.net/）中登录你的 NovelAI 账号
   - 打开控制台 (F12)，并切换到控制台 (Console) 标签页
   - 输入下面的代码并按下回车运行：
     ```javascript
