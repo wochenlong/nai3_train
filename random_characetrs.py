@@ -15,8 +15,12 @@ characters_path = "./json/genshin.json"
 folder_path = "./output"
 # 选择读取方式
 read_mode = -1  # -1为随机读取，1为按顺序读取
+
+# 设置角色优先级
+role_priority = 0  # 默认为不生效,选择1时，把角色词优先放prefix 前面
+
 # 选择 seed
-seed = -1  # 默认随机 seed
+seed = -1  # 默认随机 seed，默认随机 seed，不填或者设置为-1时为随机seed
 
 # 生成多张图像并保存
 num_images = 1000  # 要生成的图像数量
@@ -93,6 +97,12 @@ class NovelaiImageGenerator:
             random_character = self.get_random_character()
         else:
             random_character = self.get_next_character()
+
+         if role_priority == 1:
+            random_character = self.get_random_character()
+            self.json["input"] = random_character + prefix
+        else:
+            self.json["input"] = prefix
 
         self.json["input"] = prefix + random_character
         r = requests.post(self.api, json=self.json, headers=self.headers)
