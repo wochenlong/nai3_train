@@ -25,13 +25,20 @@ nai3生成的图片，一键生成、打标和处理脚本
 
 
 
+图三：
+
+![L_ZUGFLNWQXDY~4(A4~5XK2](https://github.com/wochenlong/nai3_train/assets/117965575/711aff18-3ef7-4390-889e-c0ffc846418e)
 
 
 
 # 生成的随机素材效果：
 
-![`JLI)UOF4 9_ W4GL ~VHH9](https://github.com/wochenlong/nai3_train/assets/117965575/37d81ffd-66c7-4931-81d7-8b2a018138d3)
+图四：
+![8R@KZV(13`(0U~25~KKQTR7](https://github.com/wochenlong/nai3_train/assets/117965575/1c5a42bf-b44e-48a6-aaab-aa5487554a42)
 
+
+图五：
+![N9 KXF41KXXB2T~CKZ2VS`M](https://github.com/wochenlong/nai3_train/assets/117965575/37e1801f-bfea-4f7c-8701-ed4047c29a28)
 
 
 ## 开源随机提示词库
