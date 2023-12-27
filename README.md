@@ -12,8 +12,13 @@ nai3生成的图片，一键生成、打标和处理脚本
 
 备注：不催更就不更新，clear.py脚本 有些问题，只能去掉关键词，不能去掉  ， 号
 # 生成的随机角色效果：
+图一
 
 ![VA}S0W4AL6_ZIV~2 (BDX5](https://github.com/wochenlong/nai3_train/assets/117965575/6bfecd63-fa7f-4b36-bef9-1e8df2eef21f)
+
+图二
+
+![Uploading ]0~O)3%]YX{SRSL$2VY)PTJ.png…]()
 
 
 
