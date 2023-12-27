@@ -10,32 +10,32 @@ import zipfile
 from requests.exceptions import SSLError, RequestException
 
 # 用户自定义 角色 JSON 文件的路径
-characters_path = "./json/arknights_ge_50.json"
+characters_path = "E:\脚本\json\genshin.json"
 # 生成图像文件的保存路径
-folder_path = ".\output"
+folder_path = "E:\脚本\output"
 # 选择读取方式
 read_mode = 1  # -1为随机读取，1为按顺序读取
 
 # 设置角色优先级
-role_priority = 0  # 默认为0,选择1时，把角色词优先放prefix 前面
+role_priority = 0  # 默认为0时不生效,选择1时，把角色词优先放prefix 前面
 
 # 选择 seed
-seed = -1  # 默认随机 seed，不填或者设置为-1时为随机seed
+seed = -1  # 默认随机 seed，默认随机 seed，不填或者设置为-1时为随机seed
 
 # 生成多张图像并保存
-num_images = 200  # 要生成的图像数量
+num_images = 100  # 要生成的图像数量
 batch_size = 10  # 每批次生成的图像数量
 retry_delay = 20  # 每批次生成后的休眠时间（单位：秒）
 
 sleep_time = 10  # 每批次生成后的休眠时间（单位：秒）
 
 retry_delay = 60  # 因为报错中断，脚本的重新启动时间（单位：秒）
-prefix = "official art,cowboy shot,standing,white background, "  # 加在提示词前面的固定画风词或质量词
+prefix = "chinese new year,amazing quality, very aesthetic, absurdres"  # 加在提示词前面的固定画风词或质量词
 
 
 class NovelaiImageGenerator:
     def __init__(self, characters_path, negative_prompt):
-        self.token = "xxx"
+        self.token = "xxx"  # token 自己获取
         self.api = "https://api.novelai.net/ai/generate-image"
         self.headers = {
             "authorization": f"Bearer {self.token}",
@@ -102,10 +102,11 @@ class NovelaiImageGenerator:
             random_character = self.get_random_character()
             self.json["input"] = random_character + prefix
         else:
-            self.json["input"] = prefix
+            self.json["input"] = prefix + random_character
 
-        self.json["input"] = prefix + random_character
-        r = requests.post(self.api, json=self.json, headers=self.headers)
+        r = requests.post(
+            self.api, json=self.json, headers=self.headers
+        )  # 将这行移动到这里，确保任何情况下都会执行
         with zipfile.ZipFile(io.BytesIO(r.content), mode="r") as zip:
             with zip.open("image_0.png") as image:
                 return image.read()
@@ -125,7 +126,7 @@ def save_image_from_binary(image_data, folder_path):
 
 generator = NovelaiImageGenerator(
     characters_path=characters_path,
-    negative_prompt="arknights logo,logo,nsfw, lowres, {bad}, error, fewer, extra, missing, worst quality, jpeg artifacts, bad quality, watermark, unfinished, ",
+    negative_prompt=" nsfw, lowres, {bad}, error, fewer, extra, missing, worst quality, jpeg artifacts, bad quality, watermark, unfinished, ",
 )
 
 # 加载角色列表
@@ -137,7 +138,6 @@ if read_mode == -1:
     random_mode = True
 else:
     random_mode = False
-
 
 # 生成并保存图像
 image_data = generator.generate_image("prefix_", random_mode=random_mode)
