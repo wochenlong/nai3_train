@@ -1,3 +1,4 @@
+英文版readme：[English Documentation](./README_EN.md)
 #  nai3_train
 如果你需要使用nai3生成的图片来批量训练你的SD模型，那我想你需要这个项目。
 
