@@ -29,6 +29,9 @@ nai3生成的图片，一键生成、打标和处理脚本
 
 ![L_ZUGFLNWQXDY~4(A4~5XK2](https://github.com/wochenlong/nai3_train/assets/117965575/711aff18-3ef7-4390-889e-c0ffc846418e)
 
+图四：
+![V2L6B62X60RU7((XCBMAN 9](https://github.com/wochenlong/nai3_train/assets/117965575/7b290ae4-5d77-4210-9276-519bd8afe6d6)
+
 
 
 # 生成的随机素材效果：
