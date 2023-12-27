@@ -76,7 +76,7 @@ class NovelaiImageGenerator:
     def load_characters(self):
         with open(self.characters_path, "r") as file:
             data = json.load(file)
-            self.characters = data["characetrs"]
+            self.characters = data["role"]
 
     def get_random_character(self):
         return random.choice(self.characters)
