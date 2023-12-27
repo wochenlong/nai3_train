@@ -8,7 +8,7 @@ nai3生成的图片，一键生成、打标和处理脚本
 
 原理1：从prompt_folder随机抽取txt作为prompt批量生成随机素材
 
-！把你的打标txt变成你的随机提示词库！
+   把你的打标txt变成你的随机提示词库！
 
 原理2：从json中随机抽取角色生成随机角色，或者按顺序生成所有角色
 
@@ -58,7 +58,7 @@ nai3生成的图片，一键生成、打标和处理脚本
 
 原理，从json读取角色名，生成图片
 
-c仓库内置genshin.json和arknights_ge_50.json 文件
+本仓库内置genshin.json和arknights_ge_50.json 文件
 
 例：
 使用通过读取.\json\genshin.json 文件，实现随机原神角色生成。
@@ -135,7 +135,40 @@ class NovelaiImageGenerator:
 
 
 
-## 1 批量生图，生成随机图片，
+## 1. 读取随机提示词库，批量生成随机nai3图片
+
+以下为nai3tagger.py脚本的部分代码
+
+```
+...
+class NovelaiImageGenerator:
+    def __init__(self, prompt_folder, negative_prompt):
+        # 初始化函数，接受两个参数：prompt_folder 和 negative_prompt
+   self.token = "xxx"  # 设置 API 的访问令牌
+...
+
+# 创建 NovelaiImageGenerator 实例
+generator = NovelaiImageGenerator(
+    prompt_folder=".\prompt",
+    negative_prompt=" nsfw, lowres, ",
+)
+
+# 生成图像文件的保存路径
+folder_path = ".\output"
+
+# 生成多张图像并保存
+num_images = 1000  # 要生成的图像数量
+batch_size = 10  # 每批次生成的图像数量
+retry_delay = 20  # 每批次生成后的休眠时间（单位：秒）
+
+sleep_time = 10  # 每批次生成后的休眠时间（单位：秒）
+
+retry_delay = 60  # 因为报错中断，脚本的重新启动时间（单位：秒）
+prefix = "amazing quality, absurdres, year 2023, " 默认前缀 
+
+
+
+```
 
 必填参数：
 - `self.token`：生图必需的token，授权令牌。获取方式如下：
