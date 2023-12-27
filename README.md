@@ -18,7 +18,8 @@ nai3生成的图片，一键生成、打标和处理脚本
 
 图二
 
-![Uploading ]0~O)3%]YX{SRSL$2VY)PTJ.png…]()
+![0~O)3% YX{SRSL$2VY)PTJ](https://github.com/wochenlong/nai3_train/assets/117965575/093c08fc-bf83-4d38-a282-7470bf48e316)
+
 
 
 
