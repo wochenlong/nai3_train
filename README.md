@@ -137,7 +137,7 @@ class NovelaiImageGenerator:
 
 ## 1. 读取随机提示词库，批量生成随机nai3图片
 
-以下为nai3tagger.py脚本的部分代码
+以下为 random_prompt.py脚本的部分代码
 
 ```
 ...
