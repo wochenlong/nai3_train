@@ -9,6 +9,15 @@ nai3生成的图片，一键生成、打标和处理脚本
 原理：从prompt_folder随机抽取txt作为prompt批量生成随机素材
 
 备注：不催更就不更新，clear.py脚本 有些问题，只能去掉关键词，不能去掉  ， 号
+# 生成的随机角色效果：
+
+![825 0I5}6MN73$$8LERMMZA](https://github.com/wochenlong/nai3_train/assets/117965575/d18c4c96-944b-4d20-88dd-dbb17fabcf14)
+
+# 生成的随机素材效果：
+
+![`JLI)UOF4 9_ W4GL ~VHH9](https://github.com/wochenlong/nai3_train/assets/117965575/37d81ffd-66c7-4931-81d7-8b2a018138d3)
+
+
 
 ## 开源随机提示词库
 海量txt随机提示词，解压后放进`prompt_folder`即可。
