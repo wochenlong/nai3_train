@@ -14,7 +14,7 @@ nai3生成的图片，一键生成、打标和处理脚本
 
  来源：修改自尤吉的AID训练集的打标文件
 
-二、 20w高质量提示词库 ：
+二、 20w高质量提示词库 ：https://huggingface.co/datasets/windsingai/random_prompt/resolve/main/prompt_20W.zip
 
   特点：真实图片反推，数量多，二次元浓度高，足够泛化，约有20%的nsfw
 
