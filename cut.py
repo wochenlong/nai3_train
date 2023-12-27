@@ -3,7 +3,13 @@ import os
 from tqdm import tqdm
 
 # 源图片路径
-source_path = r""
+source_path = r"E:\脚本\output\sfw_6000"
+
+# 新文件夹路径
+output_path = r"E:\脚本\output_\sfw_6000_cropped"
+
+# 创建新文件夹
+os.makedirs(output_path, exist_ok=True)
 
 # 获取源图片路径下的所有文件
 files = [f for f in os.listdir(source_path) if f.endswith(".png")]
@@ -20,10 +26,15 @@ for filename in files:
     # 裁剪底部100像素
     cropped_image = image.crop((0, 0, 832, 1116))
 
-    # 替换原图片
+    # 生成新文件路径
+    output_file = os.path.join(output_path, filename)
+
+    # 保存裁剪后的图片到新文件夹
+    cropped_image.save(output_file)
+
+    # 关闭图片
     image.close()
-    os.remove(image_path)
-    cropped_image.save(image_path)
+    cropped_image.close()
 
     # 更新进度条
     progress_bar.update(1)
