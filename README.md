@@ -1,15 +1,23 @@
 #  nai3_train
+如果你需要使用nai3生成的图片来批量训练你的SD模型，那我想你需要这个项目。
 
 nai3生成的图片，一键生成、打标和处理脚本
 
 ## 开源随机提示词库
 海量txt随机提示词，解压后放进`prompt_folder`即可。
 
-1. 4K高质量提示词库 ：
-2. 
+一、 4K高质量提示词库 ：https://huggingface.co/datasets/windsingai/random_prompt/resolve/main/prompt_4k.zip
+
  特点：人工整理，良品率高，安全性高，只有2%的nsfw
 
  来源：修改自尤吉的AID训练集的打标文件
+
+二、 20w高质量提示词库 ：
+
+  特点：真实图片反推，数量多，二次元浓度高，足够泛化，约有20%的nsfw
+  
+  来源：从 https://danbooru.donmai.us/ 批量爬取，修改自杠杠哥的20W训练集
+ 
  
 
 
