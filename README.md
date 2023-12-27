@@ -6,12 +6,15 @@
 
 nai3生成的图片，一键生成、打标和处理脚本
 
-原理：从prompt_folder随机抽取txt作为prompt批量生成随机素材
+原理1：从prompt_folder随机抽取txt作为prompt批量生成随机素材
+
+原来2：从json中随机抽取角色生成随机角色，或者按顺序生成所有角色
 
 备注：不催更就不更新，clear.py脚本 有些问题，只能去掉关键词，不能去掉  ， 号
 # 生成的随机角色效果：
 
-![image](https://github.com/wochenlong/nai3_train/assets/117965575/09b1ae9f-9758-4b2e-9a15-47e56a52cc0b)
+![VA}S0W4AL6_ZIV~2 (BDX5](https://github.com/wochenlong/nai3_train/assets/117965575/6bfecd63-fa7f-4b36-bef9-1e8df2eef21f)
+
 
 
 # 生成的随机素材效果：
