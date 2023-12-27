@@ -10,7 +10,7 @@ nai3生成的图片，一键生成、打标和处理脚本
 
 ！把你的打标txt变成你的随机提示词库！
 
-原来2：从json中随机抽取角色生成随机角色，或者按顺序生成所有角色
+原理2：从json中随机抽取角色生成随机角色，或者按顺序生成所有角色
 
 备注：不催更就不更新，clear.py脚本 有些问题，只能去掉关键词，不能去掉  ， 号
 # 生成的随机角色效果：
@@ -27,20 +27,6 @@ nai3生成的图片，一键生成、打标和处理脚本
 
 
 
-
-json文件的结构：
-
-```
-{
-  "role": [
-    "noelle_(genshin_impact)",
-    "faruzan_(genshin_impact)",
-    "角色1",
-    "角色2",
-    "角色3",
-    .....
-  ]
-```
 
 # 生成的随机素材效果：
 
@@ -68,10 +54,57 @@ json文件的结构：
   来源：从 https://danbooru.donmai.us/ 批量爬取，修改自杠杠哥的20W训练集
  
  
+## 新功能： 随机/按顺序生成指定角色的图片
+
+原理，从json读取角色名，生成图片
+
+c仓库内置genshin.json和arknights_ge_50.json 文件
+
+例：
+使用通过读取.\json\genshin.json 文件，实现随机原神角色生成。
+
+使用通过读取.\arknights_ge_50.json 文件，实现随机方舟角色生成，arknights_ge_50.json收录了在danbooru有50张图以上的方舟角色。
+
+
+json文件的结构，以genshin.json为例：
+
+```
+{
+  "role": [
+    "noelle_(genshin_impact)",
+    "faruzan_(genshin_impact)",
+    "角色1",
+    "角色2",
+    "角色3",
+    .....
+  ]
+```
+参数说明：
+- `self.token`：生图必需的token，授权令牌。获取方式如下：
+  - 在网页（https://novelai.net） 中登录你的 NovelAI 账号
+  - 打开控制台 (F12)，并切换到控制台 (Console) 标签页
+  - 输入下面的代码并按下回车运行：
+    ```javascript
+    console.log(JSON.parse(localStorage.session).auth_token)
+    ```
+  - 输出的字符串就是你的授权令牌
+- `characters_path`： 角色 JSON 文件的路径，从这个 JSON随机抽取角色生成
+- `read_mode `：选择读取json里面的角色的方式，-1为随机读取，1为按顺序读取
+- `prefix`：默认前缀，自定义的质量词或者固定的画家风格
+- `role_priority`：设置角色优先级，默认不生效，当选择1时，把角色词优先放prefix前面
+- `seed`：种子，默认随机 seed，不填或者设置为-1时为随机seed
+- `negative_prompt`：负面提示词
+- `num_images`：生成图片的总数量
+- `batch_size`：每批次生成的图像数量
+- `sleep_time`： 每批次生成后的休眠时间（单位：秒）
+- `retry_delay`： 脚本遇到异常中断后，重新自动启动的时间（单位：秒）
+
+运行命令：`Python random_characetrs.py`
 
 
 
-## 1. 批量生图，生成随机图片
+
+## 1 批量生图，生成随机图片，
 
 必填参数：
 - `self.token`：生图必需的token，授权令牌。获取方式如下：
