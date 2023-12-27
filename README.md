@@ -23,6 +23,23 @@ nai3生成的图片，一键生成、打标和处理脚本
 
 
 
+
+
+
+json文件的结构：
+
+```
+{
+  "role": [
+    "noelle_(genshin_impact)",
+    "faruzan_(genshin_impact)",
+    "角色1",
+    "角色2",
+    "角色3",
+    .....
+  ]
+```
+
 # 生成的随机素材效果：
 
 ![`JLI)UOF4 9_ W4GL ~VHH9](https://github.com/wochenlong/nai3_train/assets/117965575/37d81ffd-66c7-4931-81d7-8b2a018138d3)
