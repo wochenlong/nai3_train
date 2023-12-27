@@ -204,3 +204,49 @@ prefix = "amazing quality, absurdres, year 2023, " 默认前缀
 
 运行命令：`Python UTF-8.py`
 
+## 5. 去掉图片中的水印 （测试功能）
+#### 5.1 去掉在图片底部的水印
+这是cut.py脚本的部分代码
+
+
+```
+...
+# 源图片路径
+source_path = r".\output\sfw_6000"
+
+# 新文件夹路径
+output_path = r".\output\sfw_6000_cropped"
+
+# 创建新文件夹
+os.makedirs(output_path, exist_ok=True)
+
+# 获取源图片路径下的所有文件
+files = [f for f in os.listdir(source_path) if f.endswith(".png")]
+
+# 进度条
+progress_bar = tqdm(total=len(files), desc="Processing images")
+
+# 遍历源图片路径下的所有文件
+for filename in files:
+    # 加载图片
+    image_path = os.path.join(source_path, filename)
+    image = Image.open(image_path)
+
+    # 裁剪底部100像素
+    cropped_image = image.crop((0, 0, 832, 1116))
+
+    # 生成新文件路径
+    output_file = os.path.join(output_path, filename)
+
+    # 保存裁剪后的图片到新文件夹
+    cropped_image.save(output_file)
+
+  ...
+```
+
+参数说明：
+
+- `source_path`：源图片路径
+- `output_path`：新文件夹路径
+
+运行命令：`Python cut.py`
