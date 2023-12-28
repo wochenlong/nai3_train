@@ -1,26 +1,24 @@
 import os
-import random_prompt
 
-output_path = "./output"
+prefix = " artist:xxx,,year 2023, "   # 你的画师词/质量词
 
-# 获取指定路径下所有的文件名
-file_names = os.listdir(output_path)
+dirpath = r"./output"  # 要处理的文件夹路径
 
-for file_name in file_names:
-    file_path = os.path.join(output_path, file_name)
 
-    # 只处理文本文件
-    if file_name.endswith(".txt"):
-        with open(file_path, "r") as file:
-            lines = file.readlines()
+# 遍历指定目录下的文件
+for filename in os.listdir(dirpath):
+    # 只处理以".txt"结尾的文件
+    if filename.endswith(".txt"):
+        # 打开文件进行读取
+        with open(os.path.join(dirpath, filename), "r") as f:
+            # 读取文件内容
+            caption = f.read()
+            # 替换不需要的词语
+            caption = caption.replace(prefix, "")
+        # 打开文件进行写入
+        with open(os.path.join(dirpath, filename), "w") as f:
+            # 写入修改后的内容
+            f.write(caption)
 
-        with open(file_path, "w") as file:
-            for line in lines:
-                # 删除前缀相同的内容（包括逗号）
-                if line.strip() != random_prompt.prefix:
-                    file.write(line)
-
-        print(f"已删除文件 {file_name} 中与前缀相同的内容")
-
-print("处理完成")
-
+# 执行完毕后提醒用户
+print("当前画风词/质量词已成功去除")
