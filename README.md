@@ -217,11 +217,27 @@ prefix = "amazing quality,  artist:xxx, year 2023, "
 dirpath = r".\output_nsfw
 ```
 - `prefix`：默认前缀，要去掉的质量词或者固定的画家风格
--  `prompt_folder`：从这个文件夹里面随机抽取TXT，作为提示词
+- `dirpath`：要处理的文件夹路径
 
 运行命令：`Python clear.py`
 
 ## 4. 去掉txt文件中的非法字符，比如😄🙃
+
+txt文件中的部分非法字符，可能会令训练发生报错，训练脚本无法读取txt，因此，去掉非法字符是必需的
+
+以下是脚本的部分代码
+
+```
+# 指定含有非 UTF-8 编码字符的文件所在目录
+directory_path = r".\data"
+
+# 指定目标文件夹路径，用于存放移动后的文件
+destination_path = r".\data"
+```
+
+- `directory_path`：指定含有非 UTF-8 编码字符的文件所在目录
+- `destination_path`：指定目标文件夹路径，用于存放移动后的文件
+
 
 运行命令：`Python UTF-8.py`
 
