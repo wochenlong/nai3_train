@@ -207,6 +207,17 @@ prefix = "amazing quality, absurdres, year 2023, " 默认前缀
 然后按提示输入要处理的文件夹路径即可
 
 ## 3. 去掉txt文件中的前缀`prefix` ，绑定画风
+以下是脚本的部分代码：
+
+```
+import os
+
+prefix = "amazing quality,  artist:xxx, year 2023, "
+
+dirpath = r".\output_nsfw
+```
+- `prefix`：默认前缀，要去掉的质量词或者固定的画家风格
+-  `prompt_folder`：从这个文件夹里面随机抽取TXT，作为提示词
 
 运行命令：`Python clear.py`
 
