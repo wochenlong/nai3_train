@@ -68,12 +68,12 @@ nai3生成的图片，一键生成、打标和处理脚本
 
 原理，从json读取角色名，生成图片
 
-本仓库内置genshin.json和arknights_ge_50.json 文件
+本仓库内置包括原神、明日方舟、fgo等多个主流游戏的随机角色库。
 
 例：
 使用通过读取.\json\genshin.json 文件，实现随机原神角色生成。
 
-使用通过读取.\arknights_ge_50.json 文件，实现随机方舟角色生成，arknights_ge_50.json收录了在danbooru有50张图以上的方舟角色。
+
 
 
 json文件的结构，以genshin.json为例：
