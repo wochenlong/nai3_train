@@ -93,32 +93,31 @@ json文件的结构，以genshin.json为例：
 下面为random_characetrs.py脚本的部分代码：
 ```
 
+
 # 用户自定义 角色 JSON 文件的路径
-characters_path = "./json/arknights_ge_50.json"
+characters_path = r".\json\test_game_bluearchive.json"
 # 生成图像文件的保存路径
 folder_path = ".\output"
 # 选择读取方式
 read_mode = 1  # -1为随机读取，1为按顺序读取
-# 设置角色优先级
-role_priority = 1  # 默认为不生效,选择1时，把角色词优先放prefix 前面
-# 选择 seed
-seed = 6666  # 默认随机 seed，不填或者设置为-1时为随机seed
 
+# 设置角色优先级
+role_priority = 1  # 默认为0时不生效,选择1时，把角色词优先放prefix 前面
+
+# 选择 seed
+seed = -1  # 默认随机 seed，默认随机 seed，不填或者设置为-1时为随机seed
+
+token = ""  # token 自己获取
 # 生成多张图像并保存
-num_images = 200  # 要生成的图像数量
+num_images = 50  # 要生成的图像数量
 batch_size = 10  # 每批次生成的图像数量
 retry_delay = 20  # 每批次生成后的休眠时间（单位：秒）
 
 sleep_time = 10  # 每批次生成后的休眠时间（单位：秒）
 
 retry_delay = 60  # 因为报错中断，脚本的重新启动时间（单位：秒）
-prefix = "official art,cowboy shot,standing,white background, "  # 加在提示词前面的固定画风词或质量词
-
-class NovelaiImageGenerator:
-    def __init__(self, characters_path, negative_prompt):
-        self.token = "xxx" # 请自行获取
-....
-
+prefix = "best "  # 加在提示词前面的固定画风词或质量词
+negative_prompt = " nsfw, lowres" # 负面提示词
 ```
 参数说明：
 - `self.token`：生图必需的token，授权令牌。获取方式如下：
