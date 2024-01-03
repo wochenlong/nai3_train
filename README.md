@@ -151,30 +151,26 @@ class NovelaiImageGenerator:
 
 ```
 ...
-class NovelaiImageGenerator:
-    def __init__(self, prompt_folder, negative_prompt):
-        # 初始化函数，接受两个参数：prompt_folder 和 negative_prompt
-   self.token = "xxx"  # 设置 API 的访问令牌
-...
-
-# 创建 NovelaiImageGenerator 实例
-generator = NovelaiImageGenerator(
-    prompt_folder=".\prompt",
-    negative_prompt=" nsfw, lowres, ",
-)
 
 # 生成图像文件的保存路径
 folder_path = ".\output"
+# 抽取随机txt文件的路径
+prompt_folder = ".\prompt"
 
-# 生成多张图像并保存
-num_images = 1000  # 要生成的图像数量
+# 固定的前缀
+prefix = " best quality, amazing quality, very aesthetic "
+
+token = xxxx"  # 设置 API 的访问令牌
+
+num_images = 100  # 要生成的总图像数量
 batch_size = 10  # 每批次生成的图像数量
 retry_delay = 20  # 每批次生成后的休眠时间（单位：秒）
 
 sleep_time = 10  # 每批次生成后的休眠时间（单位：秒）
 
 retry_delay = 60  # 因为报错中断，脚本的重新启动时间（单位：秒）
-prefix = "amazing quality, absurdres, year 2023, " 默认前缀 
+
+negative_prompt = " nsfw" # 默认的负面提示词
 
 
 
