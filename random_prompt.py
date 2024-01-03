@@ -5,12 +5,34 @@ import io
 import os
 import string
 import time
+import zipfile
+from requests.exceptions import SSLError, RequestException
+
+# 生成图像文件的保存路径
+folder_path = ".\output"
+# 抽取随机txt文件的路径
+prompt_folder = ".\prompt"
+
+# 固定的前缀
+prefix = " best quality, amazing quality, very aesthetic "
+
+token = xxxx"  # 设置 API 的访问令牌
+
+num_images = 100  # 要生成的总图像数量
+batch_size = 10  # 每批次生成的图像数量
+retry_delay = 20  # 每批次生成后的休眠时间（单位：秒）
+
+sleep_time = 10  # 每批次生成后的休眠时间（单位：秒）
+
+retry_delay = 60  # 因为报错中断，脚本的重新启动时间（单位：秒）
+
+negative_prompt = " nsfw, lowres, {bad}, error, fewer, extra, missing, worst quality, jpeg artifacts, bad quality, watermark, unfinished, displeasing, chromatic aberration, signature, extra digits, artistic error, username, scan, [abstract], mutated hands,poorly drawn hands,{{{missing toes}}},extra fingers,fused fingers,{{{extra toes}}}, {{{fused toes}}},{{{mutated toes}}},{{{bad foot}}}, {{{mutated foot}}},lowres, {bad}, error, fewer, extra, missing, worst quality, jpeg artifacts, bad quality, watermark, unfinished, displeasing, chromatic aberration, signature, extra digits, artistic error, username, scan, [abstract], lowres, {bad}, error, fewer, extra, missing, worst quality, jpeg artifacts, bad quality, watermark, unfinished, displeasing, chromatic aberration, signature, extra digits,username, scan, [abstract], lowres, {bad},fewer, extra,{{{{worst quality}}}},"
 
 
 class NovelaiImageGenerator:
     def __init__(self, prompt_folder, negative_prompt):
         # 初始化函数，接受两个参数：prompt_folder 和 negative_prompt
-        self.token = ""  # 设置 API 的访问令牌
+        self.token = token
         self.api = "https://api.novelai.net/ai/generate-image"  # API 的地址
         self.headers = {
             "authorization": f"Bearer {self.token}",  # 设置请求头中的授权信息
@@ -47,25 +69,37 @@ class NovelaiImageGenerator:
         self.prompt_folder = prompt_folder
 
     def generate_image(self, prefix):
-        # 生成图像的方法
-        seed = random.randint(0, 9999999999)  # 生成一个随机种子
-        self.json["parameters"]["seed"] = seed  # 将随机种子设置到请求参数中
+        try:
+            # 生成图像的方法
+            seed = random.randint(0, 9999999999)  # 生成一个随机种子
+            self.json["parameters"]["seed"] = seed  # 将随机种子设置到请求参数中
 
-        # 从指定文件夹中随机选择一个文本文件
-        prompt_file = random.choice(os.listdir(self.prompt_folder))
-        prompt_file_path = os.path.join(self.prompt_folder, prompt_file)
+            # 从指定文件夹中随机选择一个文本文件
+            prompt_file = random.choice(os.listdir(self.prompt_folder))
+            prompt_file_path = os.path.join(self.prompt_folder, prompt_file)
 
-        # 读取文本文件内容作为 prompt 参数的值
-        with open(prompt_file_path, "r") as file:
-            prompt = file.read()
+            # 读取文本文件内容作为 prompt 参数的值
+            with open(prompt_file_path, "r") as file:
+                prompt = file.read()
 
-        self.json["input"] = prefix + prompt  # 添加自定义前缀
-        r = requests.post(self.api, json=self.json, headers=self.headers)  # 发送 POST 请求
-        with zipfile.ZipFile(
-            io.BytesIO(r.content), mode="r"
-        ) as zip:  # 将响应内容解压缩为 Zip 文件
-            with zip.open("image_0.png") as image:  # 打开解压后的 Zip 文件中的图像文件
-                return image.read()  # 返回图像的二进制数据
+            self.json["input"] = prefix + prompt  # 添加自定义前缀
+            r = requests.post(
+                self.api, json=self.json, headers=self.headers
+            )  # 发送 POST 请求
+            r.raise_for_status()  # 如果请求返回的状态码不是 2xx，会抛出异常
+
+            with zipfile.ZipFile(
+                io.BytesIO(r.content), mode="r"
+            ) as zip:  # 将响应内容解压缩为 Zip 文件
+                with zip.open("image_0.png") as image:  # 打开解压后的 Zip 文件中的图像文件
+                    return image.read()  # 返回图像的二进制数据
+
+        except requests.exceptions.RequestException as e:
+            print("请求出现异常:", e)
+        except Exception as e:
+            print("捕获到未处理的异常:", e)
+
+        return None
 
 
 def save_image_from_binary(image_data, folder_path):
@@ -83,22 +117,8 @@ def save_image_from_binary(image_data, folder_path):
 
 # 创建 NovelaiImageGenerator 实例
 generator = NovelaiImageGenerator(
-    prompt_folder="./prompt",
-    negative_prompt="nsfw",
+    prompt_folder=prompt_folder, negative_prompt=negative_prompt
 )
-
-# 生成图像文件的保存路径
-folder_path = "./output"
-
-# 生成多张图像并保存
-num_images = 500  # 要生成的图像数量
-batch_size = 10  # 每批次生成的图像数量
-retry_delay = 20  # 每批次生成后的休眠时间（单位：秒）
-
-sleep_time = 10  # 每批次生成后的休眠时间（单位：秒）
-
-retry_delay = 60  # 因为报错中断，脚本的重新启动时间（单位：秒）
-prefix = "amazing quality, absurdres, masterpiece, "
 
 
 for i in range(num_images):
@@ -118,4 +138,3 @@ for i in range(num_images):
     except zipfile.BadZipFile as e:
         print("发生错误:", e)
         print("忽略此错误，继续脚本运行")
-
