@@ -23,7 +23,15 @@ nai3生成的图片，一键生成、打标和处理脚本
 402：可能是账号没钱，或者token失效，建议换一个账号
 401：登录凭据不正确，更换token
 random_characetrs.py保存第一个图像时报错：小bug，保存第一个时必定失败，后面就正常了
-
+# 支持的所有采样器列表
+```
+            "k_euler",
+            "k_euler_ancestral",
+            "k_dpmpp_2s_ancestral",
+            "k_dpmpp_2m",
+            "k_dpmpp_sde",
+            "ddim_v3",
+```
 # 生成的随机角色效果：
 图一
 
