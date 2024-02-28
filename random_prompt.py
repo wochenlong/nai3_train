@@ -130,11 +130,14 @@ for i in range(num_images):
         save_image_from_binary(image_data, folder_path)
 
         if (i + 1) % batch_size == 0:
-            print(f"已生成 {i + 1} 张图像，休眠 {sleep_time} 秒...")
+            sleep_time = random.uniform(8, 15)
+            print(f"已生成 {i + 1} 张图像，休眠 {sleep_time:.2f} 秒...")
             time.sleep(sleep_time)
+
     except (SSLError, RequestException) as e:
         print("发生错误:", e)
-        print(f"休眠 {retry_delay} 秒后重新启动")
+        sleep_time = random.uniform(60, 120)
+        print(f"休眠 {sleep_time:.2f} 秒后重新启动")
     except zipfile.BadZipFile as e:
         print("发生错误:", e)
         print("忽略此错误，继续脚本运行")
