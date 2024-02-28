@@ -24,8 +24,10 @@ num_images = 100  # 要生成的总图像数量
 batch_size = 10  # 每批次生成的图像数量
 retry_delay = 20  # 每批次生成后的休眠时间（单位：秒）
 
-sleep_time_min = 8  # 每批次生成后的休眠时间最小值（单位：秒）
-sleep_time_max = 15  # 每批次生成后的休眠时间最小值（单位：秒）
+sleep_time_batch_min = 8  # 每批次生成后的休眠时间最小值（单位：秒）
+sleep_time_batch_max = 15  # 每批次生成后的休眠时间最小值（单位：秒）
+sleep_time_single_min = 0.5  # 每张图生成后的休眠时间最小值（单位：秒）
+sleep_time_single_max = 3  # 每张图生成后的休眠时间最小值（单位：秒）
 
 retry_delay = 60  # 因为报错中断，脚本的重新启动时间（单位：秒）
 
@@ -138,12 +140,18 @@ for i in range(num_images):
 
         if (i + 1) % batch_size == 0:
             sleep_time = (
-                random.uniform(sleep_time_min * 100, sleep_time_max * 100) / 100.0
+                random.uniform(sleep_time_batch_min * 100, sleep_time_batch_max * 100)
+                / 100.0
             )
             print(f"已生成 {i + 1} 张图像，休眠 {sleep_time} 秒...")
             time.sleep(sleep_time)
         else:  # 单次执行完后休眠
-            sleep_time = random.uniform(50, 300) / 100.0
+            sleep_time = (
+                random.uniform(sleep_time_single_min * 100, sleep_time_single_max * 100)
+                / 100.0
+            )
+            print(f"图像生成完毕，休眠 {sleep_time} 秒...")
+            time.sleep(sleep_time)
     except (SSLError, RequestException) as e:
         print("发生错误:", e)
         sleep_time = random.uniform(60, 120)
