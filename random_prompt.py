@@ -129,6 +129,8 @@ for i in range(num_images):
     try:
         # 生成图像数据
         image_data = generator.generate_image(prefix)
+        if image_data is None:
+            continue
 
         # 保存图像文件
         save_image_from_binary(image_data, folder_path)
