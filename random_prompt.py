@@ -16,7 +16,9 @@ prompt_folder = ".\prompt"
 # 固定的前缀
 prefix = " best quality, amazing quality, very aesthetic "
 
-token = xxxx"  # 设置 API 的访问令牌
+token = None  # 目录创建一个token.txt文件夹，将你的token粘贴进去
+with open("./token.txt", "r") as file:
+    token = file.read()
 
 num_images = 100  # 要生成的总图像数量
 batch_size = 10  # 每批次生成的图像数量
@@ -91,7 +93,9 @@ class NovelaiImageGenerator:
             with zipfile.ZipFile(
                 io.BytesIO(r.content), mode="r"
             ) as zip:  # 将响应内容解压缩为 Zip 文件
-                with zip.open("image_0.png") as image:  # 打开解压后的 Zip 文件中的图像文件
+                with zip.open(
+                    "image_0.png"
+                ) as image:  # 打开解压后的 Zip 文件中的图像文件
                     return image.read()  # 返回图像的二进制数据
 
         except requests.exceptions.RequestException as e:

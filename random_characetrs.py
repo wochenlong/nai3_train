@@ -22,7 +22,10 @@ role_priority = 1  # 默认为0时不生效,选择1时，把角色词优先放pr
 # 选择 seed
 seed = -1  # 默认随机 seed，默认随机 seed，不填或者设置为-1时为随机seed
 
-token = ""  # token 自己获取
+token = None  # 目录创建一个token.txt文件夹，将你的token粘贴进去
+with open("./token.txt", "r") as file:
+    token = file.read()
+
 # 生成多张图像并保存
 num_images = 50  # 要生成的图像数量
 batch_size = 10  # 每批次生成的图像数量
@@ -32,7 +35,7 @@ sleep_time = 10  # 每批次生成后的休眠时间（单位：秒）
 
 retry_delay = 60  # 因为报错中断，脚本的重新启动时间（单位：秒）
 prefix = "best "  # 加在提示词前面的固定画风词或质量词
-negative_prompt = " nsfw, lowres" # 负面提示词
+negative_prompt = " nsfw, lowres"  # 负面提示词
 
 
 class NovelaiImageGenerator:

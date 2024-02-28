@@ -14,6 +14,14 @@ nai3生成的图片，一键生成、打标和处理脚本
 
 备注：欢迎提出新功能，脚本还在不断优化中
 
+## 安装运行环境
+
+```bash
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
+```
+
 ###  一些常见的报错：
 
 500：服务器拥挤，novelai的问题
