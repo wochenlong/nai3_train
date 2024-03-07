@@ -34,7 +34,7 @@ pip install -r requirements.txt
 
 random_characetrs.py保存第一个图像时报错：小bug，保存第一个时必定失败，后面就正常了
 
-！！！注：个token路径那里，要创建一个token.txt，并把token放进去
+！！！注：token路径那里，要创建一个token.txt，并把token放进去
 # 支持的所有采样器列表
 ```
             "k_euler",
