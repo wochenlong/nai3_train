@@ -12,7 +12,7 @@ token.txt
 .Python
 build/
 develop-eggs/
-output/*.png
+output/
 dist/
 downloads/
 eggs/
