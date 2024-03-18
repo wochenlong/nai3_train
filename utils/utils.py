@@ -100,7 +100,7 @@ class NovelaiImageGenerator:
             if self.mode == "1":
                 str_artist = get_random_artist()
                 # self.json_["input"] = prefix + prompt  # 添加自定义前缀
-                self.json_["input"] = str_artist + prefix + prompt  # 添加自定义前缀
+                self.json_["input"] = str_artist + prefix  # 添加自定义前缀
             elif self.mode == "2":
                 if env_vars["read_mode"] == -1:
                     random_character = self.get_random_character()
