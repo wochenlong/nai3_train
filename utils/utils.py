@@ -1,9 +1,16 @@
+import io
 import random
 import time
 import os
 import re
+import requests
 import string
 import zipfile
+
+try:
+    import ujson as json
+except:
+    import json
 
 from dotenv import dotenv_values
 from requests.exceptions import SSLError, RequestException
@@ -45,6 +52,90 @@ json_ = {
 }
 
 
+class NovelaiImageGenerator:
+    def __init__(self, mode, prompt_folder, characters_path):
+        self.mode = mode
+        
+        # 初始化函数，接受两个参数：prompt_folder 和 negative_prompt
+        self.token = token
+        self.api = "https://api.novelai.net/ai/generate-image"  # API 的地址
+        self.headers = headers
+        self.json_ = json_
+
+        self.prompt_folder = prompt_folder
+
+        self.characters_path = characters_path
+        self.characters = []
+        self.current_character_index = 0
+
+    def load_characters(self):
+        with open(self.characters_path, "r") as file:
+            data = json.load(file)
+            self.characters = data["role"]
+
+    def get_random_character(self):
+        return random.choice(self.characters)
+
+    def get_next_character(self):
+        character = self.characters[self.current_character_index]
+        self.current_character_index = (self.current_character_index + 1) % len(
+            self.characters
+        )
+        return character
+
+    def generate_image(self, prefix):
+        try:
+            # 生成图像的方法
+            seed = random.randint(0, 9999999999)  # 生成一个随机种子
+            self.json_["parameters"]["seed"] = seed  # 将随机种子设置到请求参数中
+
+            # 从指定文件夹中随机选择一个文本文件
+            prompt_file = random.choice(os.listdir(self.prompt_folder))
+            prompt_file_path = os.path.join(self.prompt_folder, prompt_file)
+
+            # 读取文本文件内容作为 prompt 参数的值
+            with open(prompt_file_path, "r") as file:
+                prompt = file.read()
+
+            if self.mode == "1":
+                str_artist = get_random_artist()
+                # self.json_["input"] = prefix + prompt  # 添加自定义前缀
+                self.json_["input"] = str_artist + prefix + prompt  # 添加自定义前缀
+            elif self.mode == "2":
+                if env_vars["read_mode"] == -1:
+                    random_character = self.get_random_character()
+                else:
+                    random_character = self.get_next_character()
+                if env_vars["role_priority"] == 1:
+                    # random_character = self.get_random_character()
+                    self.json_["input"] = random_character + prefix
+                else:
+                    self.json_["input"] = prefix + random_character
+            elif self.mode == "3":
+                self.json_["input"] = prefix + prompt  # 添加自定义前缀
+            else:
+                print("输入有误!")
+                raise ValueError
+
+            r = requests.post(
+                self.api, json=self.json_, headers=self.headers
+            )  # 发送 POST 请求
+            r.raise_for_status()  # 如果请求返回的状态码不是 2xx，会抛出异常
+
+            with zipfile.ZipFile(
+                io.BytesIO(r.content), mode="r"
+            ) as zip:  # 将响应内容解压缩为 Zip 文件
+                with zip.open(
+                    "image_0.png"
+                ) as image:  # 打开解压后的 Zip 文件中的图像文件
+                    return image.read()  # 返回图像的二进制数据
+
+        except requests.exceptions.RequestException as e:
+            print("请求出现异常:", e)
+        except Exception as e:
+            print("捕获到未处理的异常:", e)
+
+
 def generate(generator):
     for i in range(int(env_vars["num_images"])):
         try:
@@ -82,8 +173,6 @@ def generate(generator):
 def save_image_from_binary(image_data, folder_path):
     file_name = "".join(random.choices(string.ascii_lowercase + string.digits, k=8))
     file_path = os.path.join(folder_path, file_name + ".png")
-    
-    print(">>>>>>>", file_path)
 
     try:
         with open(file_path, "wb") as file:
