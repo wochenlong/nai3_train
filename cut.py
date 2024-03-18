@@ -3,10 +3,10 @@ import os
 from tqdm import tqdm
 
 # 源图片路径
-source_path = r"E:\脚本\output\sfw_6000"
+source_path = input("请输入源图片路径:")
 
 # 新文件夹路径
-output_path = r"E:\脚本\output_\sfw_6000_cropped"
+output_path = input("请输入新文件夹路径:")
 
 # 创建新文件夹
 os.makedirs(output_path, exist_ok=True)
