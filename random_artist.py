@@ -8,6 +8,7 @@ import time
 import zipfile
 from requests.exceptions import SSLError, RequestException
 from utils import artist
+from utils import tools
 
 # 生成图像文件的保存路径
 folder_path = ".\output"
@@ -17,9 +18,7 @@ prompt_folder = ".\prompt"
 # 固定的前缀
 prefix = ", year 2023, 1girl, loli,solo, catgirl,white hair,blue eyes,cat tail,best quality, amazing quality, very aesthetic,"
 
-token = None  # 目录创建一个token.txt文件夹，将你的token粘贴进去
-with open("./token.txt", "r") as file:
-    token = file.read()
+token = tools.get_token()
 
 num_images = 100  # 要生成的总图像数量
 batch_size = 5  # 每批次生成的图像数量

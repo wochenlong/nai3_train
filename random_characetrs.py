@@ -8,6 +8,7 @@ import string
 import time
 import zipfile
 from requests.exceptions import SSLError, RequestException
+from utils import tools
 
 # 用户自定义 角色 JSON 文件的路径
 characters_path = r".\json\test_game_bluearchive.json"
@@ -22,9 +23,7 @@ role_priority = 1  # 默认为0时不生效,选择1时，把角色词优先放pr
 # 选择 seed
 seed = -1  # 默认随机 seed，默认随机 seed，不填或者设置为-1时为随机seed
 
-token = None  # 目录创建一个token.txt文件夹，将你的token粘贴进去
-with open("./token.txt", "r") as file:
-    token = file.read()
+token = tools.get_token()
 
 # 生成多张图像并保存
 num_images = 50  # 要生成的图像数量
