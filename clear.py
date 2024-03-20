@@ -1,8 +1,8 @@
 import os
 
-prefix = " artist:xxx,,year 2023, "   # 你的画师词/质量词
+prefix = input("请输入你的画师词/质量词:")  # 你的画师词/质量词
 
-dirpath = r"./output"  # 要处理的文件夹路径
+dirpath = input("请输入要处理的文件夹路径:")  # 要处理的文件夹路径
 
 
 # 遍历指定目录下的文件

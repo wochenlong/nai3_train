@@ -13,6 +13,7 @@ token.txt
 build/
 develop-eggs/
 output/
+prompt/
 dist/
 downloads/
 eggs/
@@ -123,7 +124,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+# .env
 .venv
 env/
 venv/
