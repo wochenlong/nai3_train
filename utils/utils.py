@@ -16,8 +16,6 @@ except:
 from dotenv import dotenv_values
 from requests.exceptions import SSLError, RequestException
 
-env_vars = dotenv_values('.env')
-
 
 
 # 将示例配置文件复制一份并重命名, 本来是打算写进自述文件让用户自己操作的(
@@ -25,6 +23,7 @@ if os.path.exists(".env"):
     pass
 else:
     shutil.copy(".env.example", ".env")
+env_vars = dotenv_values('.env')
 
 # 这一段是兼容配置, 如果根目录下存在 token.txt 则读取其中的 token, 并将其复制进 .env 中, 然后删除旧的 token.txt
 if os.path.exists("./token.txt"):
@@ -46,7 +45,15 @@ elif env_vars["token"] == "":
     with open(".env", 'w', encoding="utf-8") as file:
         file.write(data)
 else:
-    token = env_vars["token"]
+    pass
+# 由于上方的文件操作进行第二次读取
+env_vars = dotenv_values('.env')
+token = env_vars["token"]
+
+if os.path.exists(env_vars["folder_path"]):
+    pass
+else:
+    os.makedirs(env_vars["folder_path"])
 
 
 
