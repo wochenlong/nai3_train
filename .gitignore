@@ -13,6 +13,7 @@ token.txt
 build/
 develop-eggs/
 output/
+prompt/
 dist/
 downloads/
 eggs/

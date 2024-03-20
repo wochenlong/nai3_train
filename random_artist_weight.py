@@ -1,19 +1,12 @@
 import random
-from itertools import product
+import re
 
-# 定义艺术家和括号的列表
-artists = [
-    "artistA",
-    "artistB",
-    "artistC",
-    "artistD",
-    "artistE",
-    "artistF",
-    "artistG",
-    "artistH",
-    "artistI",
-    "artistJ",
-]
+from itertools import product
+from utils.utils import env_vars
+
+
+artists = str(re.findall('\[(.*?)\]', env_vars["artists"])[0]).replace("\"", '').split(", ")
+
 brackets = ["[]", "{}"]
 
 # 创建一个空列表用于存储所有可能的组合

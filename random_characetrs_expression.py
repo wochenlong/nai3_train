@@ -9,6 +9,7 @@ import time
 import zipfile
 from requests.exceptions import SSLError, RequestException
 
+# 哭了 TAT
 # 用户自定义 角色 JSON 文件的路径
 characters_path = r".\json\genshin_poimiku.json"
 # 用户自定义 表情 JSON 文件的路径
