@@ -4,6 +4,7 @@ import time
 import os
 import re
 import requests
+import shutil
 import string
 import zipfile
 
@@ -15,10 +16,47 @@ except:
 from dotenv import dotenv_values
 from requests.exceptions import SSLError, RequestException
 
+
+
+# 将示例配置文件复制一份并重命名, 本来是打算写进自述文件让用户自己操作的(
+if os.path.exists(".env"):
+    pass
+else:
+    shutil.copy(".env.example", ".env")
 env_vars = dotenv_values('.env')
 
+# 这一段是兼容配置, 如果根目录下存在 token.txt 则读取其中的 token, 并将其复制进 .env 中, 然后删除旧的 token.txt
+if os.path.exists("./token.txt"):
+    with open("./token.txt", 'r', encoding='utf-8') as file:
+        token = file.read()
+    with open(".env", 'r', encoding="utf-8") as file:
+        data = file.read()
+    # 不要动我的正则!!!
+    data = re.sub(r"\stoken\s*=\s*\"(.*?)\"", f"\ntoken = \"{token}\"", data)
+    with open(".env", 'w', encoding="utf-8") as file:
+        file.write(data)
+    os.remove("./token.txt")
+# 改善用户体验, 让用户可以直接在命令行中粘贴获取到的 token
+elif env_vars["token"] == "":
+    token = input("输入获取到的 token:")
+    with open(".env", 'r', encoding="utf-8") as file:
+        data = file.read()
+    data = re.sub(r"\stoken\s*=\s*\"(.*?)\"", f"\ntoken = \"{token}\"", data)
+    with open(".env", 'w', encoding="utf-8") as file:
+        file.write(data)
+else:
+    pass
+# 由于上方的文件操作进行第二次读取
+env_vars = dotenv_values('.env')
+token = env_vars["token"]
 
-token = env_vars["token"] if env_vars["token"] != "" else print("请配置 token!")
+if os.path.exists(env_vars["folder_path"]):
+    pass
+else:
+    os.makedirs(env_vars["folder_path"])
+
+
+
 headers = {
     "authorization": f"Bearer {token}",  # 设置请求头中的授权信息
     "referer": "https://novelai.net",  # 设置请求头中的 referer
