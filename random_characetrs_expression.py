@@ -1,13 +1,16 @@
-import random
-import requests
-import zipfile
+# FIXME: 重构
+
 import io
 import os
-import json
+import random
 import string
 import time
 import zipfile
+
+import requests
 from requests.exceptions import SSLError, RequestException
+
+import json
 
 # 哭了 TAT
 # 用户自定义 角色 JSON 文件的路径
@@ -87,29 +90,28 @@ class NovelaiImageGenerator:
         self.expressions_path = expressions_path
         self.expressions = []
 
-    def load_characters(self):          # 加载角色文件
+    def load_characters(self):  # 加载角色文件
         with open(self.characters_path, "r") as file:
             data = json.load(file)
             self.characters = data["role"]
 
-    def get_random_character(self):     # 获取随机角色文本
+    def get_random_character(self):  # 获取随机角色文本
         return random.choice(self.characters)
 
-    def get_next_character(self):       #获取下一角色文本
+    def get_next_character(self):  # 获取下一角色文本
         character = self.characters[self.current_character_index]
         self.current_character_index = (self.current_character_index + 1) % len(
             self.characters
         )
         return character
 
-    def load_expressions(self):          # 加载表情文件
+    def load_expressions(self):  # 加载表情文件
         with open(self.expressions_path, "r") as file:
             data = json.load(file)
             self.expressions = data["expression"]
 
-    def get_random_expression(self):     # 获取随机表情文本
+    def get_random_expression(self):  # 获取随机表情文本
         return random.choice(self.expressions)
-
 
     def generate_image(self, prefix, random_mode=True, seed=None):
         if seed is None or seed == -1:
@@ -155,9 +157,8 @@ generator = NovelaiImageGenerator(
 
 # 加载角色列表
 generator.load_characters()
-#加载表情列表
+# 加载表情列表
 generator.load_expressions()
-
 
 # 判断读取方式
 if read_mode == -1:
@@ -168,7 +169,6 @@ else:
 # 生成并保存图像
 image_data = generator.generate_image("prefix_", random_mode=random_mode)
 save_image_from_binary(image_data, "image_folder")
-
 
 for i in range(num_images):
     try:
@@ -182,15 +182,15 @@ for i in range(num_images):
 
         if (i + 1) % batch_size == 0:  # 批次执行结束休眠
             sleep_time = (
-                random.uniform(sleep_time_batch_min * 100, sleep_time_batch_max * 100)
-                / 100.0
+                    random.uniform(sleep_time_batch_min * 100, sleep_time_batch_max * 100)
+                    / 100.0
             )
             print(f"已生成 {i + 1} 张图像，休眠 {sleep_time} 秒...")
             time.sleep(sleep_time)
         else:  # 单次执行完后休眠
             sleep_time = (
-                random.uniform(sleep_time_single_min * 100, sleep_time_single_max * 100)
-                / 100.0
+                    random.uniform(sleep_time_single_min * 100, sleep_time_single_max * 100)
+                    / 100.0
             )
             print(f"图像生成完毕，休眠 {sleep_time} 秒...")
             time.sleep(sleep_time)

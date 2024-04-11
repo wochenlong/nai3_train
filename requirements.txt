@@ -1,5 +1,0 @@
-requests==2.31.0
-pillow
-python-dotenv>=1.0.1
-tqdm
-gradio==4.7.1

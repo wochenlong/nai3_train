@@ -1,5 +1,5 @@
 # 将你的token粘贴进去
-token = "" 
+token = ""
 
 # 用户自定义 角色 JSON 文件的路径
 characters_path = "./json/test_game_bluearchive.json"
@@ -36,10 +36,9 @@ retry_delay = 60  # 因为报错中断，脚本的重新启动时间（单位：
 prefix = "best quality"
 # 负面提示词
 negative_prompt = " nsfw, lowres, {bad}, error, fewer, extra, missing, worst quality, jpeg artifacts, bad quality, watermark, unfinished, displeasing, chromatic aberration, signature, extra digits, artistic error, username, scan, [abstract], mutated hands,poorly drawn hands,{{{missing toes}}},extra fingers,fused fingers,{{{extra toes}}}, {{{fused toes}}},{{{mutated toes}}},{{{bad foot}}}, {{{mutated foot}}},lowres, {bad}, error, fewer, extra, missing, worst quality, jpeg artifacts, bad quality, watermark, unfinished, displeasing, chromatic aberration, signature, extra digits, artistic error, username, scan, [abstract], lowres, {bad}, error, fewer, extra, missing, worst quality, jpeg artifacts, bad quality, watermark, unfinished, displeasing, chromatic aberration, signature, extra digits,username, scan, [abstract], lowres, {bad},fewer, extra,{{{{worst quality}}}}, "
-
-
 # 定义艺术家和括号的列表
 artists = ["artistA", "artistB", "artistC", "artistD", "artistE", "artistF", "artistG", "artistH", "artistI", "artistJ"]
-
 # 这边写上你喜欢的画师串
 artist_list = ["sho_(sho_lwlw)", "sho_(sho_lwlw)", "sho_(sho_lwlw)", "sho_(sho_lwlw)", "sho_(sho_lwlw)", "sho_(sho_lwlw)", "sho_(sho_lwlw)", "sho_(sho_lwlw)", "sho_(sho_lwlw)", "sho_(sho_lwlw)", "sho_(sho_lwlw)", "sho_(sho_lwlw)", "sho_(sho_lwlw)", "sho_(sho_lwlw)", "sho_(sho_lwlw)", "sho_(sho_lwlw)", "sho_(sho_lwlw)"]
+
+skip_pay_generate = true  # 是否跳过付费生成
