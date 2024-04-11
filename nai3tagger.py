@@ -1,5 +1,7 @@
 from pathlib import Path
+
 from PIL import Image
+from novelai_python.tool.image_metadata import ImageMetadata
 
 
 def read_prompt(img_path):
@@ -22,7 +24,14 @@ def main():
     if not dir_p.exists():
         raise FileNotFoundError(f"Directory `{dir_p}` does not exist.")
     for img_p in dir_p.glob("*.png"):
-        prompt = read_prompt(img_p)
+        try:
+            image = ImageMetadata.load_image(img_p)
+            prompt = image.Comment.prompt
+        except Exception as e:
+            try:
+                prompt = read_prompt(img_p)
+            except Exception as e:
+                raise e
         cap_p = img_p.with_suffix(".txt")
         if cap_p.exists():
             print(f"Skipping `{img_p}`: caption already exists.")

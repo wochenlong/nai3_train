@@ -1,10 +1,18 @@
-from utils.utils import *
+import asyncio
+
+from app.request import NovelaiInspire, GenerateMode, generate
+from app.settings import env_var
 
 
+async def main():
+    generator = NovelaiInspire(
+        generate_mode=GenerateMode.RANDOM_CHARACTER,
+        prompt_folder=env_var.prompt_folder,
+        characters=NovelaiInspire.load_characters_from_file(characters_path=env_var.characters_path)
+    )
+    # 创建 NovelaiImageGenerator 实例
+    await generate(generator=generator)
 
-generator = NovelaiImageGenerator(mode="2", prompt_folder=env_vars["prompt_folder"], characters_path=env_vars["characters_path"])
 
-# 加载角色列表
-generator.load_characters()
-
-generate(generator)
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main())

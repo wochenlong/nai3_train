@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 *.sqlite
 token.txt
+config.toml
 
 # C extensions
 *.so

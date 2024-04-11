@@ -1,22 +1,20 @@
 import os
 
 prefix = input("请输入你的画师词/质量词:")  # 你的画师词/质量词
-
-dirpath = input("请输入要处理的文件夹路径:")  # 要处理的文件夹路径
-
+dir_path = input("请输入要处理的文件夹路径:")  # 要处理的文件夹路径
 
 # 遍历指定目录下的文件
-for filename in os.listdir(dirpath):
+for filename in os.listdir(dir_path):
     # 只处理以".txt"结尾的文件
     if filename.endswith(".txt"):
         # 打开文件进行读取
-        with open(os.path.join(dirpath, filename), "r") as f:
+        with open(os.path.join(dir_path, filename), "r") as f:
             # 读取文件内容
             caption = f.read()
             # 替换不需要的词语
             caption = caption.replace(prefix, "")
         # 打开文件进行写入
-        with open(os.path.join(dirpath, filename), "w") as f:
+        with open(os.path.join(dir_path, filename), "w") as f:
             # 写入修改后的内容
             f.write(caption)
 

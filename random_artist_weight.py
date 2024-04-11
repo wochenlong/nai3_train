@@ -1,12 +1,9 @@
 import random
-import re
-
 from itertools import product
-from utils.utils import env_vars
 
+from app.request import env_var
 
-artists = str(re.findall('\[(.*?)\]', env_vars["artists"])[0]).replace("\"", '').split(", ")
-
+artists = env_var.artists
 brackets = ["[]", "{}"]
 
 # 创建一个空列表用于存储所有可能的组合
