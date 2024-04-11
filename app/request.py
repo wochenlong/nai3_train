@@ -63,7 +63,7 @@ class NovelaiInspire(BaseModel):
     current_character_index: int = 0
 
     @model_validator(mode="after")
-    def load_characters(self):
+    def check_after_init(self):
         # 判定prompt_folder是否存在，是否是文件夹
         if not os.path.exists(self.prompt_folder) or not os.path.isdir(self.prompt_folder):
             raise ValueError(f"Prompt folder not found: {self.prompt_folder}")
@@ -78,7 +78,9 @@ class NovelaiInspire(BaseModel):
             raise ValueError(f"Characters file load failed: {characters_path} because {e}")
 
     def get_random_character(self):
-        return random.choice(self.characters)
+        character = random.choice(self.characters)
+        logger.info(f"抽取随机角色串 {character}")
+        return character
 
     def get_random_artist(self):
         artist_num = random.randrange(5, 11)  # 抽取5个到10个画师
@@ -93,6 +95,7 @@ class NovelaiInspire(BaseModel):
         self.current_character_index = (self.current_character_index + 1) % len(
             self.characters
         )
+        logger.info(f"抽取随机角色串 {character}")
         return character
 
     async def _generate_image(self, prefix):
