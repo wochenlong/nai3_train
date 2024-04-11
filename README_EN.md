@@ -76,11 +76,12 @@ Image 5:
 
 A massive txt random prompt library, just unzip and put it into `prompt_folder`.
 
-| Library  | 4K High Quality                                               | 200K High Quality                                                                                                        |
-|----------|---------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Features | Manually sorted, high quality rate, high safety, only 2% nsfw | Real image reverse push, large quantity, high concentration of secondary elements, enough generalization, about 20% nsfw |
-| Content  | Mainly characters and composition                             | Many themes, considering the composition of danbooru, mainly female characters                                           |
-| Source   | Modified from Yoshiji's AID training set tagging file         | Bulk crawled from https://danbooru.donmai.us/, modified from Brother Ganggang's 200K training set                        |
+| Library  | 4K High Quality                                                                                        | 200K High Quality                                                                                                        |
+|----------|--------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Features | Manually sorted, high quality rate, high safety, only 2% nsfw                                          | Real image reverse push, large quantity, high concentration of secondary elements, enough generalization, about 20% nsfw |
+| Content  | Mainly characters and composition                                                                      | Many themes, considering the composition of danbooru, mainly female characters                                           |
+| Source   | Modified from Yoshiji's AID training set tagging file                                                  | Bulk crawled from https://danbooru.donmai.us/, modified from Brother Ganggang's 200K training set                        |
+| Download | [4K High Quality](https://huggingface.co/datasets/windsingai/random_prompt/resolve/main/prompt_4k.zip) | [200K High Quality](https://huggingface.co/datasets/windsingai/random_prompt/resolve/main/prompt_20W.zip)                |
 
 ## 🎉 Quick Start
 
