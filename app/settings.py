@@ -2,10 +2,18 @@ import os
 import pathlib
 from typing import Type, Tuple
 
+from loguru import logger
 from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict, PydanticBaseSettingsSource, TomlConfigSettingsSource
 
+EXP_CONFIG_FILE = pathlib.Path(__file__).parent.parent / "config.exp.toml"
 CONFIG_FILE = pathlib.Path(__file__).parent.parent / "config.toml"
+if not CONFIG_FILE.exists():
+    # 复制
+    with open(EXP_CONFIG_FILE, "r", encoding="utf-8") as f:
+        with open(CONFIG_FILE, "w", encoding="utf-8") as f2:
+            f2.write(f.read())
+    logger.info(f"配置文件不存在，已复制示例配置文件到 {CONFIG_FILE}")
 
 
 class RunTimeSetting(BaseSettings):
