@@ -77,21 +77,11 @@ random_characetrs.py保存第一个图像时报错：小bug，保存第一个时
 
 海量txt随机提示词，解压后放进`prompt_folder`即可。
 
-一、 4K高质量提示词库 ：https://huggingface.co/datasets/windsingai/random_prompt/resolve/main/prompt_4k.zip
-
-特点：人工整理，良品率高，安全性高，只有2%的nsfw
-
-内容：以人物和构图为主
-
-来源：修改自尤吉的AID训练集的打标文件
-
-二、 20w高质量提示词库 ：https://huggingface.co/datasets/windsingai/random_prompt/resolve/main/prompt_20W.zip
-
-特点：真实图片反推，数量多，二次元浓度高，足够泛化，约有20%的nsfw
-
-内容：题材很多，考虑到danbooru的构成，主要还是以女性为主
-
-来源：从 https://danbooru.donmai.us/ 批量爬取，修改自杠杠哥的20W训练集
+| 图库 | 4K高质量                    | 20W高质量                                           |
+|----|--------------------------|--------------------------------------------------|
+| 特点 | 人工整理，良品率高，安全性高，只有2%的nsfw | 真实图片反推，数量多，二次元浓度高，足够泛化，约有20%的nsfw                |
+| 内容 | 以人物和构图为主                 | 题材很多，考虑到danbooru的构成，主要还是以女性为主                    |
+| 来源 | 修改自尤吉的AID训练集的打标文件        | 从 https://danbooru.donmai.us/ 批量爬取，修改自杠杠哥的20W训练集 |
 
 ## 🎉 快速上手
 
