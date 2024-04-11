@@ -2,15 +2,15 @@
 
 英文版说明：[English Documentation](./README_EN.md)
 
-如果你需要使用nai3生成的图片来批量训练你的SD模型，那我想你需要这个项目。
+如果你需要使用 nai3 生成的图片来批量训练你的SD模型，那我想你需要这个项目。
 
-nai3生成的图片，一键生成、打标和处理脚本
+nai3 生成的图片，一键生成、打标和处理脚本
 
-原理1：从prompt_folder随机抽取txt作为prompt批量生成随机素材
+原理1：从 prompt_folder 文件夹随机抽取文本作为提示词批量生成随机素材。
 
 把你的打标txt变成你的随机提示词库！
 
-原理2：从json中随机抽取角色生成随机角色，或者按顺序生成所有角色
+原理2：从 json 中随机抽取角色生成随机角色，或者按顺序生成所有角色
 
 备注：欢迎提出新功能，脚本还在不断优化中
 
@@ -33,19 +33,15 @@ token 获取方法:
 - 找到 “Get Persistent API Token.” 栏目
 - 点击 “Generate Token” 按钮生成 token
 
-### ⚠️一些常见的报错：
-
-random_characetrs.py保存第一个图像时报错：小bug，保存第一个时必定失败，后面就正常了
-
-## ✨ 支持的所有采样器列表
+## ✨ 支持的大部分采样器列表
 
 ```
-            "k_euler",
-            "k_euler_ancestral",
-            "k_dpmpp_2s_ancestral",
-            "k_dpmpp_2m",
-            "k_dpmpp_sde",
-            "ddim_v3",
+"k_euler",
+"k_euler_ancestral",
+"k_dpmpp_2s_ancestral",
+"k_dpmpp_2m",
+"k_dpmpp_sde",
+"ddim_v3",
 ```
 
 ## ✨ 生成的随机角色效果：
@@ -120,7 +116,7 @@ json文件的结构，以genshin.json为例：
 
 ### 4️⃣ clear.py
 
-去掉txt文件中的前缀`prefix` ，绑定画风
+去掉txt文件中的前缀 `prefix` ，绑定画风
 
 ### 5️⃣ UTF-8.py
 
