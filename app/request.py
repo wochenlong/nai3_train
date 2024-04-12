@@ -30,6 +30,10 @@ handler_id = logger.add(
     enqueue=True,
     level="INFO" if not os.getenv("DEBUG") else "DEBUG"
 )
+if env_var.seed == -1:
+    RANDOM_SEED = True
+else:
+    RANDOM_SEED = False
 
 
 def slugify(value, allow_unicode=False):
@@ -103,7 +107,7 @@ class NovelaiInspire(BaseModel):
         prompt_file_path = os.path.join(self.prompt_folder, prompt_file)
         with open(prompt_file_path, "r") as file:
             random_prompt = file.read()
-        if env_var.seed == -1:
+        if RANDOM_SEED:
             env_var.seed = random.randint(0, 4294967288)
 
         if self.generate_mode == GenerateMode.RANDOM_ARTIST:
